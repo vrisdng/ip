@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Amiya {
-    static List<String> storage = new ArrayList<>();
+    static List<Task> taskList = new ArrayList<>();
     public static void main(String[] args) {
         greeting("Amiya");
         System.out.println("_______________________");
@@ -11,12 +11,17 @@ public class Amiya {
         String command;
         while (true) {
             command = scanner.nextLine().trim();
+            String[] parts = command.split("\\s+");
             if (command.equalsIgnoreCase("bye")) {
                 break;
             } else if (command.equalsIgnoreCase("list")) {
                 list();
+            } else if (parts[0].equalsIgnoreCase("mark")) {
+                handleMarking(parts, true);
+            } else if (parts[0].equalsIgnoreCase("unmark")) {
+                handleMarking(parts, false);
             } else {
-                store(command);
+                addTask(new Task(command));
             }
         }
         exit();
@@ -53,17 +58,40 @@ public class Amiya {
         };
     }
 
-    public static void store(String command) {
-        storage.add(command);
-        System.out.println("added: " + command);
+    public static void addTask(Task task) {
+        taskList.add(task);
+        System.out.println("added: " + task.getDescription());
         System.out.println("_______________________");
     }
 
     public static void list() {
-        for(int i = 0; i < storage.size(); i++) {
-            System.out.println(i+1 + ". " + storage.get(i));
+        System.out.println("Here's a list of your tasks: ");
+        for(int i = 0; i < taskList.size(); i++) {
+            System.out.println((i + 1) + ". " + taskList.get(i).toString());
         }
         System.out.println("_______________________");
+    }
+
+    public static void handleMarking(String[] parts, boolean isMarking) {
+        if (parts.length > 1) {
+            try {
+                int taskId = Integer.parseInt(parts[1]);
+                if (taskId - 1 >= 0 && taskId - 1 < taskList.size()) {
+                    Task task = taskList.get(taskId);
+                    if (isMarking) {
+                        task.mark();
+                    } else {
+                        task.unmark();
+                    }
+                    System.out.println("_______________________");
+                } else {
+                    System.out.println("Invalid task number.");
+                }
+            }
+            catch (NumberFormatException e){
+                System.out.println("Invalid task number.");
+            }
+        }
     }
 
 }
