@@ -1,15 +1,25 @@
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Amiya {
+    static List<String> storage = new ArrayList<>();
     public static void main(String[] args) {
         greeting("Amiya");
         System.out.println("_______________________");
         Scanner scanner = new Scanner(System.in);
         String command;
-        do {
-            command = scanner.nextLine();
-            echo(command);
-        } while (!command.equals("bye"));
+        while (true) {
+            command = scanner.nextLine().trim();
+            if (command.equalsIgnoreCase("bye")) {
+                break;
+            } else if (command.equalsIgnoreCase("list")) {
+                list();
+            } else {
+                store(command);
+            }
+        }
+        exit();
         scanner.close();
     }
 
@@ -36,13 +46,24 @@ public class Amiya {
     }
 
     public static String translateToJapanese(String command) {
-        switch (command.toLowerCase()) {
-            case "hello":
-                return "こんにちは! ";
-            case "thank you":
-                return "ありがとう! ";
-            default:
-                return command;
-        }
+        return switch (command.toLowerCase()) {
+            case "hello" -> "こんにちは! ";
+            case "thank you" -> "ありがとう! ";
+            default -> command;
+        };
     }
+
+    public static void store(String command) {
+        storage.add(command);
+        System.out.println("added: " + command);
+        System.out.println("_______________________");
+    }
+
+    public static void list() {
+        for(int i = 0; i < storage.size(); i++) {
+            System.out.println(i+1 + ". " + storage.get(i));
+        }
+        System.out.println("_______________________");
+    }
+
 }
