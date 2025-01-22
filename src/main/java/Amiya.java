@@ -12,16 +12,16 @@ public class Amiya {
         while (true) {
             command = scanner.nextLine().trim();
             String[] parts = command.split("\\s+");
+            String commandType = parts[0];
+
             if (command.equalsIgnoreCase("bye")) {
                 break;
             } else if (command.equalsIgnoreCase("list")) {
                 list();
-            } else if (parts[0].equalsIgnoreCase("mark")) {
-                handleMarking(parts, true);
-            } else if (parts[0].equalsIgnoreCase("unmark")) {
-                handleMarking(parts, false);
+            } else if (commandType.equals("mark") || commandType.equals("unmark")) {
+                handleMarking(parts, commandType.equals("mark"));
             } else {
-                addTask(new Task(command));
+                handleTasks(command);
             }
         }
         exit();
@@ -35,6 +35,53 @@ public class Amiya {
 
     public static void exit() {
         System.out.println("さようなら! Hope to see you again soon.");
+    }
+
+    public static Task parseTask(String input) {
+        String[] parts = input.split("\\s+", 2);
+        String type = parts[0].toLowerCase();
+
+        if (parts.length < 2) {
+            System.out.println("Invalid input without description");
+            return null;
+        }
+
+        String details = parts[1];
+
+        switch (type) {
+            case "todo":
+                return new Todo(details.trim());
+            case "deadline": {
+                // first index is the description, second index is the dueDate
+                String[] deadlineTask = parts[1].split(" /by", 2);
+                if (deadlineTask.length == 2) {
+                    return new Deadline(deadlineTask[0], deadlineTask[1].trim());
+                }
+                break;
+            }
+            case "event": {
+                // first index is the description, second/third index is the startTime/endTime
+                String[] eventTask = parts[1].split(" /from | /to", 3);
+                if (eventTask.length == 3) {
+                    return new Event(eventTask[0], eventTask[1].trim(), eventTask[2].trim());
+                }
+                break;
+            }
+
+            default:
+                break;
+        }
+        return null;
+    }
+
+    public static void handleTasks(String command) {
+        Task task = parseTask(command);
+
+        if (task != null) {
+            addTask(task);
+        } else {
+            System.out.println("Invalid task format. Please try again.");
+        }
     }
 
     public static void echo(String command) {
@@ -60,7 +107,9 @@ public class Amiya {
 
     public static void addTask(Task task) {
         taskList.add(task);
-        System.out.println("added: " + task.getDescription());
+        System.out.println("Got it. I have added this task: ");
+        System.out.println("  " + task.toString());
+        System.out.printf("Now you have %d tasks in the list.%n", taskList.size());
         System.out.println("_______________________");
     }
 
@@ -77,7 +126,7 @@ public class Amiya {
             try {
                 int taskId = Integer.parseInt(parts[1]);
                 if (taskId - 1 >= 0 && taskId - 1 < taskList.size()) {
-                    Task task = taskList.get(taskId);
+                    Task task = taskList.get(taskId - 1);
                     if (isMarking) {
                         task.mark();
                     } else {
