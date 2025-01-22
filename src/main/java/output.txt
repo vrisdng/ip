@@ -1,0 +1,56 @@
+Hello Dokutah! I'm Amiya.
+What can I do for you?
+_______________________
+hi
+_______________________
+こんにちは!
+_______________________
+I'm sorry, Doctor, but this command is unfamiliar to me.
+I'm sorry, Doctor, but it seems like the task is missing a description. Could you please provide more details?
+_______________________
+Currently there are no tasks. Have a rest!
+I'm sorry, Doctor, but there are no tasks to mark. Please add some tasks first.
+I'm sorry, Doctor, but there are no tasks to mark. Please add some tasks first.
+Got it. I have added this task:
+   [T][ ] deploy operators
+Now you have 1 tasks in the list.
+_______________________
+Got it. I have added this task:
+   [D][ ] go Contingency Contract (by: Sunday)
+Now you have 2 tasks in the list.
+_______________________
+Got it. I have added this task:
+   [E][ ] have tea time (from: Mon 2pm to: 4pm)
+Now you have 3 tasks in the list.
+_______________________
+Dokutah. Here's a list of your tasks:
+   1. [T][ ] deploy operators
+   2. [D][ ] go Contingency Contract (by: Sunday)
+   3. [E][ ] have tea time (from: Mon 2pm to: 4pm)
+_______________________
+I'm sorry, Doctor, but it seems like the task is missing a description. Could you please provide more details?
+_______________________
+Great work Dokutah! I have marked this task as done for you:
+   [T][X] deploy operators
+_______________________
+Great work Dokutah! I have marked this task as done for you:
+   [D][X] go Contingency Contract (by: Sunday)
+_______________________
+Dokutah. Here's a list of your tasks:
+   1. [T][X] deploy operators
+   2. [D][X] go Contingency Contract (by: Sunday)
+   3. [E][ ] have tea time (from: Mon 2pm to: 4pm)
+_______________________
+OK, I've marked this task as not done yet:
+   [T][ ] deploy operators
+_______________________
+It was already unmarked.
+_______________________
+Dokutah. Here's a list of your tasks:
+   1. [T][ ] deploy operators
+   2. [D][X] go Contingency Contract (by: Sunday)
+   3. [E][ ] have tea time (from: Mon 2pm to: 4pm)
+_______________________
+I'm sorry, Doctor, but it is an invalid task number.
+I'm sorry, Doctor, but it is an invalid task number.
+さようなら! Hope to see you again soon.

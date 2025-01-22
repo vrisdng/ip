@@ -6,22 +6,30 @@ public class Amiya {
     static List<Task> taskList = new ArrayList<>();
     public static void main(String[] args) {
         greeting("Amiya");
-        System.out.println("_______________________");
         Scanner scanner = new Scanner(System.in);
         String command;
         while (true) {
             command = scanner.nextLine().trim();
             String[] parts = command.split("\\s+");
             String commandType = parts[0];
-
-            if (command.equalsIgnoreCase("bye")) {
-                break;
-            } else if (command.equalsIgnoreCase("list")) {
-                list();
-            } else if (commandType.equals("mark") || commandType.equals("unmark")) {
-                handleMarking(parts, commandType.equals("mark"));
-            } else {
-                handleTasks(command);
+            try {
+                if (command.equalsIgnoreCase("bye")) {
+                    break;
+                } else if (command.equalsIgnoreCase("list")) {
+                    list();
+                } else if (commandType.equalsIgnoreCase("echo")) {
+                    echo(command);
+                } else if (commandType.equals("mark") || commandType.equals("unmark")) {
+                    handleMarking(parts, commandType.equals("mark"));
+                } else if (commandType.equals("todo") ||
+                           commandType.equals("deadline") ||
+                           commandType.equals("event")) {
+                    handleTasks(command);
+                } else {
+                    throw new AmiyaException("this command is unfamiliar to me.");
+                }
+            } catch (AmiyaException e) {
+                System.out.println(e.getMessage());
             }
         }
         exit();
@@ -31,19 +39,19 @@ public class Amiya {
     public static void greeting(String name) {
         System.out.printf("Hello Dokutah! I'm %s.%n", name);
         System.out.println("What can I do for you?");
+        System.out.println("_______________________");
     }
 
     public static void exit() {
         System.out.println("さようなら! Hope to see you again soon.");
     }
 
-    public static Task parseTask(String input) {
+    public static Task parseTask(String input) throws AmiyaException {
         String[] parts = input.split("\\s+", 2);
         String type = parts[0].toLowerCase();
 
         if (parts.length < 2) {
-            System.out.println("Invalid input without description");
-            return null;
+            throw new AmiyaException("it seems like the task is missing a description. Could you please provide more details?");
         }
 
         String details = parts[1];
@@ -75,70 +83,90 @@ public class Amiya {
     }
 
     public static void handleTasks(String command) {
-        Task task = parseTask(command);
+        try {
+            Task task = parseTask(command);
 
-        if (task != null) {
-            addTask(task);
-        } else {
-            System.out.println("Invalid task format. Please try again.");
+            if (task != null) {
+                addTask(task);
+            }
+        } catch (AmiyaException e) {
+            System.out.println(e.getMessage());
+            System.out.println("_______________________");
         }
     }
 
     public static void echo(String command) {
-        if (command.equals("bye")) {
-            exit();
-            return;
+        if (command.length() > 5) {
+            String text = command.substring(5).trim();
+            String translatedCommand = translateToJapanese(text);
+            System.out.println(translatedCommand);
+            System.out.println("_______________________");
+        } else {
+            System.out.println("Please provide some text to echo.");
+            System.out.println("_______________________");
         }
-
-        String translatedCommand = translateToJapanese(command);
-
-        System.out.println("_______________________");
-        System.out.println(translatedCommand);
-        System.out.println("_______________________");
     }
 
     public static String translateToJapanese(String command) {
         return switch (command.toLowerCase()) {
-            case "hello" -> "こんにちは! ";
-            case "thank you" -> "ありがとう! ";
+            case "hello" -> "こんにちは!";
+            case "thank you" -> "ありがとう!";
             default -> command;
         };
     }
 
     public static void addTask(Task task) {
         taskList.add(task);
-        System.out.println("Got it. I have added this task: ");
-        System.out.println("  " + task.toString());
+        System.out.println("Got it. I have added this task:");
+        System.out.println("   " + task.toString());
         System.out.printf("Now you have %d tasks in the list.%n", taskList.size());
         System.out.println("_______________________");
     }
 
     public static void list() {
-        System.out.println("Here's a list of your tasks: ");
-        for(int i = 0; i < taskList.size(); i++) {
-            System.out.println((i + 1) + ". " + taskList.get(i).toString());
+        if (taskList.isEmpty()) {
+            System.out.println("Currently there are no tasks. Have a rest!");
+        } else {
+            System.out.println("Dokutah. Here's a list of your tasks:");
+            for(int i = 0; i < taskList.size(); i++) {
+                System.out.println("   " + (i + 1) + ". " + taskList.get(i).toString());
+            }
+            System.out.println("_______________________");
         }
-        System.out.println("_______________________");
     }
 
-    public static void handleMarking(String[] parts, boolean isMarking) {
+    public static void handleMarking(String[] parts, boolean isMarking) throws AmiyaException {
+        if (taskList.isEmpty()) {
+            throw new AmiyaException("there are no tasks to mark. Please add some tasks first.");
+        }
+
         if (parts.length > 1) {
             try {
                 int taskId = Integer.parseInt(parts[1]);
                 if (taskId - 1 >= 0 && taskId - 1 < taskList.size()) {
                     Task task = taskList.get(taskId - 1);
                     if (isMarking) {
+                        if (task.getStatus()) {
+                            System.out.println("You have already marked this task.");
+                            System.out.println("_______________________");
+                            return;
+                        }
                         task.mark();
                     } else {
+                        if (!task.getStatus()) {
+                            System.out.println("It was already unmarked.");
+                            System.out.println("_______________________");
+                            return;
+                        }
                         task.unmark();
                     }
                     System.out.println("_______________________");
                 } else {
-                    System.out.println("Invalid task number.");
+                    throw new AmiyaException("it is an invalid task number.");
                 }
             }
             catch (NumberFormatException e){
-                System.out.println("Invalid task number.");
+                throw new AmiyaException("it is an invalid task number.");
             }
         }
     }
