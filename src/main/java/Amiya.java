@@ -2,6 +2,12 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
+enum TaskType {
+    TODO,
+    DEADLINE,
+    EVENT
+}
+
 public class Amiya {
     static List<Task> taskList = new ArrayList<>();
     public static void main(String[] args) {
@@ -50,7 +56,7 @@ public class Amiya {
 
     public static Task parseTask(String input) throws AmiyaException {
         String[] parts = input.split("\\s+", 2);
-        String type = parts[0].toLowerCase();
+        String type = parts[0].toUpperCase();
 
         if (parts.length < 2) {
             throw new AmiyaException("it seems like the task is missing a description. Could you please provide more details?");
@@ -58,10 +64,10 @@ public class Amiya {
 
         String details = parts[1];
 
-        switch (type) {
-            case "todo":
+        switch (TaskType.valueOf(type)) {
+            case TODO:
                 return new Todo(details.trim());
-            case "deadline": {
+            case DEADLINE: {
                 // first index is the description, second index is the dueDate
                 String[] deadlineTask = parts[1].split(" /by", 2);
                 if (deadlineTask.length == 2) {
@@ -69,7 +75,7 @@ public class Amiya {
                 }
                 break;
             }
-            case "event": {
+            case EVENT: {
                 // first index is the description, second/third index is the startTime/endTime
                 String[] eventTask = parts[1].split(" /from | /to", 3);
                 if (eventTask.length == 3) {

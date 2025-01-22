@@ -10,4 +10,9 @@ public class Deadline extends Task {
     public String toString() {
         return String.format("[D][%s] %s (by: %s)", getStatusIcon(), this.description, this.dueDate);
     }
+
+    @Override
+    public String getType() {
+        return TaskType.DEADLINE.name();
+    }
 }

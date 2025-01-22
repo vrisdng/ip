@@ -16,4 +16,9 @@ public class Event extends Task {
                 this.startTime,
                 this.endTime);
     }
+
+    @Override
+    public String getType() {
+        return TaskType.EVENT.name();
+    }
 }
