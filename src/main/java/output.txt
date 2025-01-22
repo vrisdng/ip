@@ -6,6 +6,8 @@ _______________________
 こんにちは!
 _______________________
 I'm sorry, Doctor, but this command is unfamiliar to me.
+I'm sorry, Doctor, but there are no tasks to delete yet.
+_______________________
 I'm sorry, Doctor, but it seems like the task is missing a description. Could you please provide more details?
 _______________________
 Currently there are no tasks. Have a rest!
@@ -46,10 +48,13 @@ OK, I've marked this task as not done yet:
 _______________________
 It was already unmarked.
 _______________________
+Noted. I have removed this task:
+   [D][X] go Contingency Contract (by: Sunday)
+Now you have 2 tasks in the list.
+_______________________
 Dokutah. Here's a list of your tasks:
    1. [T][ ] deploy operators
-   2. [D][X] go Contingency Contract (by: Sunday)
-   3. [E][ ] have tea time (from: Mon 2pm to: 4pm)
+   2. [E][ ] have tea time (from: Mon 2pm to: 4pm)
 _______________________
 I'm sorry, Doctor, but it is an invalid task number.
 I'm sorry, Doctor, but it is an invalid task number.

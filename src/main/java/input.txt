@@ -1,6 +1,7 @@
 echo hi
 echo hello
 blah
+delete 0
 todo
 list
 mark 1
@@ -15,6 +16,7 @@ mark 2
 list
 unmark 1
 unmark 3
+delete 2
 list
 mark 0
 unmark 0

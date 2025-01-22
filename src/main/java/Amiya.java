@@ -21,6 +21,8 @@ public class Amiya {
                     echo(command);
                 } else if (commandType.equals("mark") || commandType.equals("unmark")) {
                     handleMarking(parts, commandType.equals("mark"));
+                } else if (commandType.equals("delete")) {
+                    deleteTask(parts);
                 } else if (commandType.equals("todo") ||
                            commandType.equals("deadline") ||
                            commandType.equals("event")) {
@@ -121,6 +123,26 @@ public class Amiya {
         System.out.println("   " + task.toString());
         System.out.printf("Now you have %d tasks in the list.%n", taskList.size());
         System.out.println("_______________________");
+    }
+
+    public static void deleteTask(String[] parts) {
+        int taskId = Integer.parseInt(parts[1]);
+        try {
+            if (taskList.isEmpty()) {
+                throw new AmiyaException("there are no tasks to delete yet.");
+            }
+            if (taskId <= 0 || taskId > taskList.size()) {
+                throw new AmiyaException("please provide a valid task number.");
+            }
+            System.out.println("Noted. I have removed this task:");
+            System.out.println("   " + taskList.get(taskId - 1).toString());
+            taskList.remove(taskId - 1);
+            System.out.printf("Now you have %d tasks in the list.%n", taskList.size());
+            System.out.println("_______________________");
+        } catch (AmiyaException e) {
+            System.out.println(e.getMessage());
+            System.out.println("_______________________");
+        }
     }
 
     public static void list() {
