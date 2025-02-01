@@ -27,6 +27,6 @@ public class Deadline extends Task {
     @Override
     public String toFileFormat() {
         return "DEADLINE | " + (isDone ? "1" : "0") + " | " + description + " | " +
-                getFormattedDueDate(DateTimeFormatter.ofPattern("d/M/yyyy HH:mm"));
+                getFormattedDueDate(DateTimeFormatter.ofPattern("d-M-yyyy HH:mm"));
     }
 }

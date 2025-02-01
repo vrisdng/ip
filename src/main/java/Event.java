@@ -32,7 +32,7 @@ public class Event extends Task {
 
     @Override
     public String toFileFormat() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
         return "EVENT | " + (isDone ? "1" : "0") + " | " + description +
                 " | " +getFormattedDueDate(startTime, formatter) + " | " + getFormattedDueDate(endTime, formatter);
     }

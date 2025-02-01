@@ -30,14 +30,10 @@ abstract public class Task {
 
     public void mark() {
         this.setStatus(true);
-        System.out.println("Great work Dokutah! I have marked this task as done for you:");
-        System.out.println("   " + this.toString());
     }
 
     public void unmark() {
         this.setStatus(false);
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println("   " + this.toString());
     }
     public abstract String getType();
 

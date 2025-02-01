@@ -1,23 +1,11 @@
+todo Finish homework
+deadline Submit assignment /by 12-12-2025 17:00
+event Meeting with Suzuran /from 12-12-2025 09:00 /to 12-12-2025 11:00
+list
+mark 1
+unmark 1
+remove 2
+clear
+list
 echo hi
-echo hello
-blah
-delete 0
-todo
-list
-mark 1
-unmark 1
-todo deploy operators
-deadline go Contingency Contract /by Sunday
-event have tea time /from Mon 2pm /to 4pm
-list
-deadline
-mark 1
-mark 2
-list
-unmark 1
-unmark 3
-delete 2
-list
-mark 0
-unmark 0
 bye
