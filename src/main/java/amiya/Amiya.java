@@ -1,11 +1,14 @@
+package amiya;
+
 import java.util.Scanner;
 import java.io.*;
 
-enum TaskType {
-    TODO,
-    DEADLINE,
-    EVENT
-}
+import amiya.storage.Storage;
+import amiya.task.*;
+import amiya.ui.UI;
+import amiya.parser.Parser;
+import amiya.exception.AmiyaException;
+
 
 public class Amiya {
     private static Storage storage;
@@ -81,10 +84,8 @@ public class Amiya {
     public static void handleTasks(String command) {
         try {
             Task task = Parser.parseTask(command);
-            if (task != null) {
-                taskList.addTask(task);
-                ui.showTaskAdded(task, taskList.size());
-            }
+            taskList.addTask(task);
+            ui.showTaskAdded(task, taskList.size());
         } catch (AmiyaException e) {
             ui.showError(e.getMessage());
         }

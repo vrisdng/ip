@@ -1,3 +1,7 @@
+package amiya.task;
+
+import amiya.task.TaskType;
+
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
@@ -10,7 +14,7 @@ public class Todo extends Task {
 
     @Override
     public String getType() {
-        return TaskType.TODO.name();
+        return amiya.task.TaskType.TODO.name();
     }
 
     @Override

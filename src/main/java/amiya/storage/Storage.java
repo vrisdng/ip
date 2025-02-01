@@ -1,3 +1,7 @@
+package amiya.storage;
+
+import amiya.task.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +52,7 @@ public class Storage {
     }
 
     public void save(List<Task> tasks) {
-        File file = new File(filePath);
+        File file = new File("data/Amiya.txt");
         file.getParentFile().mkdirs();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {

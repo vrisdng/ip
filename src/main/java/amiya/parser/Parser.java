@@ -1,3 +1,10 @@
+package amiya.parser;
+
+import amiya.exception.AmiyaException;
+import amiya.task.Deadline;
+import amiya.task.Event;
+import amiya.task.*;
+
 public class Parser {
 
     public static Task parseTask(String command) throws AmiyaException {

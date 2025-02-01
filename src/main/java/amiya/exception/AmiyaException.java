@@ -1,3 +1,5 @@
+package amiya.exception;
+
 public class AmiyaException extends Exception {
     private String message;
 

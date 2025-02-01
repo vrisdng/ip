@@ -1,3 +1,7 @@
+package amiya.ui;
+
+import amiya.task.Task;
+
 import java.util.List;
 
 public class UI {

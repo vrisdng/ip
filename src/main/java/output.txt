@@ -1,5 +1,5 @@
 Error loading tasks from file.
-Hello Dokutah! I'm Amiya.
+Hello Dokutah! I'm amiya.Amiya.
 What can I do for you?
 _______________________
 No saved tasks found.
