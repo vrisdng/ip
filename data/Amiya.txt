@@ -1,0 +1,7 @@
+TODO | 1 | Buy groceries
+DEADLINE | 0 | Finish assignment | Monday
+EVENT | 1 | Birthday party | Tuesday 18:00 | Tuesday 22:00
+TODO | 0 | Read AI research paper
+DEADLINE | 1 | Submit project report | Wednesday
+EVENT | 0 | Conference talk | Thursday 09:00 | Thursday 11:00
+TODO | 0 | teach
