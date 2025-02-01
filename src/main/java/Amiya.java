@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.*;
 
 enum TaskType {
     TODO,
@@ -11,7 +12,16 @@ enum TaskType {
 public class Amiya {
     static List<Task> taskList = new ArrayList<>();
     public static void main(String[] args) {
+        loadTasksFromFile();
         greeting("Amiya");
+
+        if (!taskList.isEmpty()) {
+            System.out.println("Previously saved tasks have been loaded:");
+            list();
+        } else {
+            System.out.println("No saved tasks found.");
+        }
+
         Scanner scanner = new Scanner(System.in);
         String command;
         while (true) {
@@ -27,12 +37,15 @@ public class Amiya {
                     echo(command);
                 } else if (commandType.equals("mark") || commandType.equals("unmark")) {
                     handleMarking(parts, commandType.equals("mark"));
+                    saveTasksToFile();
                 } else if (commandType.equals("delete")) {
                     deleteTask(parts);
+                    saveTasksToFile();
                 } else if (commandType.equals("todo") ||
                            commandType.equals("deadline") ||
                            commandType.equals("event")) {
                     handleTasks(command);
+                    saveTasksToFile();
                 } else {
                     throw new AmiyaException("this command is unfamiliar to me.");
                 }
@@ -42,6 +55,69 @@ public class Amiya {
         }
         exit();
         scanner.close();
+    }
+
+    public static void saveTasksToFile() {
+        File file = new File("data/Amiya.txt");
+        file.getParentFile().mkdirs();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            for (Task task : taskList) {
+                writer.write(task.toFileFormat());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving tasks to file: " + e.getMessage());
+        }
+    }
+
+    public static void loadTasksFromFile() {
+        File directory = new File("./data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
+        File file = new File("./data/Amiya.txt");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                System.out.println("Amiya.txt not found. A new file has been created.");
+            } catch (IOException e) {
+                System.out.println("Error creating Amiya.txt: " + e.getMessage());
+            }
+            return;
+        } else {
+            System.out.println("File succesfuly loaded.");
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(" \\| ");
+                Task task = null;
+
+                switch (parts[0]) {
+                    case "TODO":
+                        task = new Todo(parts[2]);
+                        break;
+                    case "DEADLINE":
+                        task = new Deadline(parts[2], parts[3]);
+                        break;
+                    case "EVENT":
+                        task = new Event(parts[2], parts[3], parts[4]);
+                        break;
+                }
+
+                if (task != null) {
+                    if (parts[1].equals("1")) {
+                        task.mark(); // Set task as done
+                    }
+                    taskList.add(task);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error loading tasks from file: " + e.getMessage());
+        }
     }
 
     public static void greeting(String name) {

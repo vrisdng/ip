@@ -21,4 +21,9 @@ public class Event extends Task {
     public String getType() {
         return TaskType.EVENT.name();
     }
+
+    @Override
+    public String toFileFormat() {
+        return "EVENT | " + (isDone ? "1" : "0") + " | " + description + " | " + startTime + " | " + endTime;
+    }
 }

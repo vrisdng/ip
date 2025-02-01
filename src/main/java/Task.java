@@ -39,6 +39,23 @@ abstract public class Task {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("   " + this.toString());
     }
-
     public abstract String getType();
+
+    public abstract String toFileFormat();
+
+    public static Task fromFileFormat(String line) {
+        String[] parts = line.split("\\|");
+        if (parts.length < 3) return null;
+
+        boolean isDone = parts[1].equals("1");
+        String description = parts[2];
+
+        return switch (parts[0]) {
+            case "T" -> new Todo(description);
+            case "D" -> new Deadline(description, parts[3]);
+            case "E" -> new Event(description, parts[3], parts[4]);
+            default -> null;
+        };
+    }
+
 }

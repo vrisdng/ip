@@ -12,4 +12,9 @@ public class Todo extends Task {
     public String getType() {
         return TaskType.TODO.name();
     }
+
+    @Override
+    public String toFileFormat() {
+        return "TODO | " + (isDone ? "1" : "0") + " | " + description;
+    }
 }

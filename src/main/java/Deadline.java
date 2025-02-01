@@ -15,4 +15,9 @@ public class Deadline extends Task {
     public String getType() {
         return TaskType.DEADLINE.name();
     }
+
+    @Override
+    public String toFileFormat() {
+        return "DEADLINE | " + (isDone ? "1" : "0") + " | " + description + " | " + dueDate;
+    }
 }
