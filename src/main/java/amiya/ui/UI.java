@@ -64,6 +64,21 @@ public class UI {
         }
     }
 
+    public void showFoundTasks(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("No matching tasks found.");
+        } else {
+            System.out.println("_______________________");
+            System.out.println("Here are the matching tasks in your list");
+            int count = 1;
+            for (Task task : tasks) {
+                System.out.println(count + ". " + task.toString());
+                count++;
+            }
+            System.out.println("_______________________");
+        }
+    }
+
     public void showTaskDeleted(Task task, int taskListSize) {
         System.out.println("Noted. I have removed this task:");
         System.out.println("   " + task);

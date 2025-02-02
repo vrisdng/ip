@@ -22,6 +22,16 @@ public class TaskList {
         tasks.add(task);
     }
 
+    public List<Task> findTasks(String keyword) {
+        List<Task> matchingTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                matchingTasks.add(task);
+            }
+        }
+        return matchingTasks;
+    }
+
     public Task removeTask(int taskId) throws AmiyaException {
         if (tasks.isEmpty()) {
             throw new AmiyaException("there are no tasks to remove.");
