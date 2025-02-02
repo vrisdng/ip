@@ -15,11 +15,14 @@ public class Parser {
         if (command.startsWith("todo")) {
             task = new Todo(description);
         } else if (command.startsWith("deadline")) {
-            if (parts.length < 2) throw new AmiyaException("Missing /by date-time for deadline task.");
+            if (parts.length < 2)
+                throw new AmiyaException("Missing /by date-time for deadline task.");
             String by = parts[1].replaceFirst("^by\\s*", "");
             task = new Deadline(description, by);
         } else if (command.startsWith("event")) {
-            if (parts.length < 3) throw new AmiyaException("Missing /from and /to date-time for event task.");
+            if (parts.length < 3) {
+                throw new AmiyaException("Missing /from and /to date-time for event task.");
+            }
             String from = parts[1].replaceFirst("^from\\s*", "");
             String to = parts[2].replaceFirst("^to\\s*", "");
             task = new Event(description, from, to);

@@ -37,15 +37,16 @@ abstract public class Task {
     public void unmark() {
         this.setStatus(false);
     }
+
     public abstract String getType();
 
     public abstract String toFileFormat();
 
     public static Task fromFileFormat(String line) {
         String[] parts = line.split("\\|");
-        if (parts.length < 3) return null;
+        if (parts.length < 3)
+            return null;
 
-        boolean isDone = parts[1].equals("1");
         String description = parts[2];
 
         return switch (parts[0]) {

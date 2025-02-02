@@ -1,6 +1,5 @@
 package amiya.task;
 
-import amiya.task.TaskType;
 import amiya.parser.DateTimeParser;
 
 import java.time.LocalDateTime;
@@ -39,6 +38,6 @@ public class Event extends Task {
     public String toFileFormat() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");
         return "EVENT | " + (isDone ? "1" : "0") + " | " + description +
-                " | " +getFormattedDueDate(startTime, formatter) + " | " + getFormattedDueDate(endTime, formatter);
+                " | " + getFormattedDueDate(startTime, formatter) + " | " + getFormattedDueDate(endTime, formatter);
     }
 }

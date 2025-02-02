@@ -34,7 +34,9 @@ public class TaskList {
         return task;
     }
 
-    public void clearTasks() { tasks.clear(); }
+    public void clearTasks() {
+        tasks.clear();
+    }
 
     public void markTask(int taskId) throws AmiyaException {
         if (tasks.isEmpty()) {
