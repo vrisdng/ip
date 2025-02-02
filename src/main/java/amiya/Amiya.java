@@ -61,6 +61,9 @@ public class Amiya {
                 } else if (commandType.equalsIgnoreCase("echo") && parts.length > 1) {
                     String textToEcho = command.substring(5).trim();
                     ui.echo(textToEcho);
+                } else if (commandType.equalsIgnoreCase("find") && parts.length > 1) {
+                    String keyword = command.substring(5).trim();
+                    ui.showFoundTasks(taskList.findTasks(keyword));
                 } else if (commandType.equals("mark")) {
                     taskList.markTask(Integer.parseInt(parts[1]));
                     ui.showTaskMarked(taskList.getTasks().get(Integer.parseInt(parts[1]) - 1));

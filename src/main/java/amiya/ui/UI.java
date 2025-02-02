@@ -106,6 +106,27 @@ public class UI {
     }
 
     /**
+     * Displays the list of tasks that match the given keyword.
+     *
+     * @param tasks The list of tasks that match the keyword.
+     */
+
+    public void showFoundTasks(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("No matching tasks found.");
+        } else {
+            System.out.println("_______________________");
+            System.out.println("Here are the matching tasks in your list");
+            int count = 1;
+            for (Task task : tasks) {
+                System.out.println(count + ". " + task.toString());
+                count++;
+            }
+            System.out.println("_______________________");
+        }
+    }
+
+    /**
      * Displays a message indicating a task has been deleted.
      *
      * @param task The task that was deleted.

@@ -39,12 +39,30 @@ public class TaskList {
     }
 
     /**
+     * Finds tasks that contain the given keyword in their description.
+     *
+     * @param keyword The keyword to search for.
+     * @return A list of tasks that contain the keyword.
+     */
+
+    public List<Task> findTasks(String keyword) {
+        List<Task> matchingTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
+                matchingTasks.add(task);
+            }
+        }
+        return matchingTasks;
+    }
+
+    /**
      * Removes a task from the task list based on the given task ID.
      *
      * @param taskId The 1-based index of the task to remove.
      * @return The removed task.
      * @throws AmiyaException If the task list is empty or the task ID is invalid.
      */
+
     public Task removeTask(int taskId) throws AmiyaException {
         if (tasks.isEmpty()) {
             throw new AmiyaException("there are no tasks to remove.");
