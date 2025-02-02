@@ -10,14 +10,15 @@ import amiya.parser.Parser;
 import amiya.exception.AmiyaException;
 
 /**
- * The Amiya class serves as the main entry point for the task management application.
- * It handles user input, processes commands, and manages task storage and retrieval.
+ * The Amiya class serves as the main entry point for the task management
+ * application.
+ * It handles user input, processes commands, and manages task storage and
+ * retrieval.
  */
 public class Amiya {
     private static Storage storage;
     private static TaskList taskList;
     private static UI ui;
-    private static Parser parser;
 
     /**
      * Initializes the application by setting up the UI, storage, and task list.
@@ -72,7 +73,8 @@ public class Amiya {
                 } else if (commandType.equals("clear")) {
                     taskList.clearTasks();
                     ui.showTasksCleared();
-                } else if (commandType.equals("todo") || commandType.equals("deadline") || commandType.equals("event")) {
+                } else if (commandType.equals("todo") || commandType.equals("deadline")
+                        || commandType.equals("event")) {
                     handleTasks(command);
                 } else {
                     throw new AmiyaException("this is an unknown command.");
