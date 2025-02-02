@@ -60,7 +60,9 @@ public class TaskList {
     /**
      * Clears all tasks from the list.
      */
-    public void clearTasks() { tasks.clear(); }
+    public void clearTasks() {
+        tasks.clear();
+    }
 
     /**
      * Marks a task as completed.

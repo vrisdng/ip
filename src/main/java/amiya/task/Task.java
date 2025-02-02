@@ -84,6 +84,7 @@ abstract public class Task {
      *
      * @return The task type as a string.
      */
+
     public abstract String getType();
 
     /**
@@ -101,9 +102,9 @@ abstract public class Task {
      */
     public static Task fromFileFormat(String line) {
         String[] parts = line.split("\\|");
-        if (parts.length < 3) return null;
+        if (parts.length < 3)
+            return null;
 
-        boolean isDone = parts[1].equals("1");
         String description = parts[2];
 
         return switch (parts[0]) {

@@ -36,11 +36,7 @@ public class Amiya {
         }
     }
 
-    /**
-     * Runs the main application loop, handling user input and processing commands.
-     * Supports commands for task management such as adding, removing, marking, and listing tasks.
-     */
-    public static void run() {
+    public void run() {
         ui.greeting("Amiya");
 
         if (!taskList.getTasks().isEmpty()) {
@@ -90,11 +86,6 @@ public class Amiya {
         scanner.close();
     }
 
-    /**
-     * The main entry point of the application.
-     *
-     * @param args Command-line arguments.
-     */
     public static void main(String[] args) {
         new Amiya("data/Amiya.txt").run();
     }
