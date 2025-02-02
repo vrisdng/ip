@@ -1,3 +1,1 @@
-TODO | 1 | Buy groceries
-DEADLINE | 0 | Finish assignment | 12-1-2025 13:00
-EVENT | 1 | Birthday party | 13-1-2025 13:00 | 13-1-2025 14:00
+TODO | 0 | Take a walk

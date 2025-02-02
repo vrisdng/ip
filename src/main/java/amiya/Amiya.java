@@ -9,13 +9,22 @@ import amiya.ui.UI;
 import amiya.parser.Parser;
 import amiya.exception.AmiyaException;
 
-
+/**
+ * The Amiya class serves as the main entry point for the task management application.
+ * It handles user input, processes commands, and manages task storage and retrieval.
+ */
 public class Amiya {
     private static Storage storage;
     private static TaskList taskList;
     private static UI ui;
     private static Parser parser;
 
+    /**
+     * Initializes the application by setting up the UI, storage, and task list.
+     * Loads previously saved tasks from the specified file.
+     *
+     * @param filePath The file path for storing task data.
+     */
     public Amiya(String filePath) {
         ui = new UI();
         storage = new Storage(filePath);
@@ -27,6 +36,10 @@ public class Amiya {
         }
     }
 
+    /**
+     * Runs the main application loop, handling user input and processing commands.
+     * Supports commands for task management such as adding, removing, marking, and listing tasks.
+     */
     public static void run() {
         ui.greeting("Amiya");
 
@@ -77,10 +90,21 @@ public class Amiya {
         scanner.close();
     }
 
+    /**
+     * The main entry point of the application.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         new Amiya("data/Amiya.txt").run();
     }
 
+    /**
+     * Parses and adds a task based on user input.
+     * Displays appropriate messages upon successful task addition or error.
+     *
+     * @param command The user command containing task details.
+     */
     public static void handleTasks(String command) {
         try {
             Task task = Parser.parseTask(command);
@@ -90,5 +114,4 @@ public class Amiya {
             ui.showError(e.getMessage());
         }
     }
-
 }

@@ -1,19 +1,36 @@
 package amiya.storage;
 
 import amiya.task.*;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Storage class is responsible for loading and saving tasks from/to a file.
+ * It provides methods to read tasks from a specified file path and store them in
+ * a list of Task objects. Additionally, it allows saving a list of tasks back to the file.
+ */
 public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructs a Storage object with the specified file path.
+     *
+     * @param filePath The path of the file where tasks are stored or loaded from.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the file specified in the filePath.
+     * If the file does not exist, a new file is created and an empty task list is returned.
+     * The method parses each line of the file and creates Task objects based on the content.
+     *
+     * @return A list of Task objects loaded from the file.
+     * @throws IOException If an I/O error occurs during reading from the file.
+     */
     public List<Task> load() throws IOException {
         File file = new File(filePath);
         if (!file.exists()) {
@@ -51,6 +68,12 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the list of tasks to the file specified in the file path.
+     * Each task is written in a format that can be read later.
+     *
+     * @param tasks The list of Task objects to save to the file.
+     */
     public void save(List<Task> tasks) {
         File file = new File("data/Amiya.txt");
         file.getParentFile().mkdirs();

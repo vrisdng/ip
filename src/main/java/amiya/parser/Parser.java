@@ -5,8 +5,21 @@ import amiya.task.Deadline;
 import amiya.task.Event;
 import amiya.task.*;
 
+/**
+ * The Parser class is responsible for parsing user input commands and converting them into Task objects.
+ * It identifies the type of task (TODO, DEADLINE, EVENT) based on the input and extracts relevant details.
+ * If the input is invalid or incomplete, it throws an AmiyaException with an appropriate error message.
+ */
 public class Parser {
 
+    /**
+     * Parses a user command into a Task object based on the specified format.
+     * The command can represent a TODO, DEADLINE, or EVENT task, with the appropriate details extracted.
+     *
+     * @param command The input command to parse, representing the task and its details.
+     * @return A Task object corresponding to the input command.
+     * @throws AmiyaException If the input command is in an invalid format or required details are missing.
+     */
     public static Task parseTask(String command) throws AmiyaException {
         String[] parts = command.split(" /");
         String description = parts[0].substring(parts[0].indexOf(" ") + 1); // Extract task description
