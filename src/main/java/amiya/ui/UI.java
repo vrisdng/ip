@@ -8,7 +8,7 @@ import java.util.List;
  * The UI class handles user interaction by displaying messages and responding to commands.
  */
 public class UI {
-
+    
     /**
      * Displays a greeting message with the given name.
      *
@@ -17,7 +17,6 @@ public class UI {
     public void greeting(String name) {
         System.out.printf("Hello Dokutah! I'm %s.%n", name);
         System.out.println("What can I do for you?");
-        System.out.println("_______________________");
     }
 
     /**
@@ -36,10 +35,8 @@ public class UI {
         if (!command.isEmpty()) {
             String translatedCommand = translateToJapanese(command);
             System.out.println(translatedCommand);
-            System.out.println("_______________________");
         } else {
             System.out.println("Please provide some text to echo.");
-            System.out.println("_______________________");
         }
     }
 
@@ -72,7 +69,6 @@ public class UI {
      */
     public void showError(String message) {
         System.out.println(message);
-        System.out.println("_______________________");
     }
 
     /**
@@ -85,7 +81,6 @@ public class UI {
         System.out.println("Got it. I have added this task:");
         System.out.println("   " + task.toString());
         System.out.printf("Now you have %d tasks in the list.%n", taskCount);
-        System.out.println("_______________________");
     }
 
     /**
@@ -101,7 +96,6 @@ public class UI {
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println("   " + (i + 1) + ". " + tasks.get(i).toString());
             }
-            System.out.println("_______________________");
         }
     }
 
@@ -115,14 +109,12 @@ public class UI {
         if (tasks.isEmpty()) {
             System.out.println("No matching tasks found.");
         } else {
-            System.out.println("_______________________");
             System.out.println("Here are the matching tasks in your list");
             int count = 1;
             for (Task task : tasks) {
                 System.out.println(count + ". " + task.toString());
                 count++;
             }
-            System.out.println("_______________________");
         }
     }
 
@@ -136,7 +128,6 @@ public class UI {
         System.out.println("Noted. I have removed this task:");
         System.out.println("   " + task);
         System.out.printf("Now you have %d tasks in the list.%n", taskListSize);
-        System.out.println("_______________________");
     }
 
     /**
@@ -147,7 +138,6 @@ public class UI {
     public void showTaskMarked(Task task) {
         System.out.println("OK, I have marked this task as done:");
         System.out.println("   " + task);
-        System.out.println("_______________________");
     }
 
     /**
@@ -158,7 +148,6 @@ public class UI {
     public void showTaskUnmarked(Task task) {
         System.out.println("OK, I have unmarked this task:");
         System.out.println("   " + task);
-        System.out.println("_______________________");
     }
 
     /**
@@ -166,7 +155,6 @@ public class UI {
      */
     public static void showNoTasks() {
         System.out.println("There are no tasks to mark. Please add some tasks first.");
-        System.out.println("_______________________");
     }
 
     /**
@@ -174,7 +162,6 @@ public class UI {
      */
     public void showTaskListEmpty() {
         System.out.println("Currently there are no tasks. Have a rest!");
-        System.out.println("_______________________");
     }
 
     /**
@@ -184,7 +171,6 @@ public class UI {
      */
     public void showInvalidCommand(String message) {
         System.out.println(message);
-        System.out.println("_______________________");
     }
 
     /**
@@ -192,6 +178,5 @@ public class UI {
      */
     public void showTasksCleared() {
         System.out.println("All tasks have been cleared!");
-        System.out.println("_______________________");
     }
 }
