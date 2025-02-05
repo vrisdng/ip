@@ -1,7 +1,7 @@
 package amiya.task;
 
 import amiya.exception.AmiyaException;
-import amiya.ui.UI;
+import amiya.ui.Ui;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -90,7 +90,7 @@ public class TaskList {
      */
     public void markTask(int taskId) throws AmiyaException {
         if (tasks.isEmpty()) {
-            UI.showNoTasks();
+            Ui.showNoTasks();
         }
 
         if (taskId - 1 < 0 || taskId - 1 >= tasks.size()) {
@@ -111,7 +111,7 @@ public class TaskList {
      */
     public void unmarkTask(int taskId) throws AmiyaException {
         if (tasks.isEmpty()) {
-            UI.showNoTasks();
+            Ui.showNoTasks();
         }
 
         if (taskId - 1 < 0 || taskId - 1 >= tasks.size()) {

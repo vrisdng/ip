@@ -5,7 +5,7 @@ import java.io.*;
 
 import amiya.storage.Storage;
 import amiya.task.*;
-import amiya.ui.UI;
+import amiya.ui.Ui;
 import amiya.parser.Parser;
 import amiya.exception.AmiyaException;
 
@@ -18,7 +18,7 @@ import amiya.exception.AmiyaException;
 public class Amiya {
     private static Storage storage;
     private static TaskList taskList;
-    private static UI ui;
+    private static Ui ui;
 
     /**
      * Initializes the application by setting up the UI, storage, and task list.
@@ -27,7 +27,7 @@ public class Amiya {
      * @param filePath The file path for storing task data.
      */
     public Amiya(String filePath) {
-        ui = new UI();
+        ui = new Ui();
         storage = new Storage(filePath);
         try {
             taskList = new TaskList(storage.load());
@@ -38,7 +38,7 @@ public class Amiya {
     }
 
     public void run() {
-        ui.greeting("Amiya");
+        ui.giveGreetings("Amiya");
 
         if (!taskList.getTasks().isEmpty()) {
             System.out.println("Previously saved tasks have been loaded:");

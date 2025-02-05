@@ -1,20 +1,19 @@
 package amiya.ui;
 
 import amiya.task.Task;
-
 import java.util.List;
 
 /**
  * The UI class handles user interaction by displaying messages and responding to commands.
  */
-public class UI {
+public class Ui {
     
     /**
      * Displays a greeting message with the given name.
      *
      * @param name The name to be included in the greeting.
      */
-    public void greeting(String name) {
+    public void giveGreetings(String name) {
         System.out.printf("Hello Dokutah! I'm %s.%n", name);
         System.out.println("What can I do for you?");
     }
