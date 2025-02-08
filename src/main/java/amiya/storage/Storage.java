@@ -1,5 +1,6 @@
 package amiya.storage;
 
+import amiya.exception.AmiyaException;
 import amiya.task.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -64,6 +65,8 @@ public class Storage {
                     taskList.add(task);
                 }
             }
+        } catch (AmiyaException e) {
+            throw new RuntimeException(e);
         }
         return taskList;
     }

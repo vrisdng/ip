@@ -3,6 +3,8 @@ package amiya.parser;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import amiya.exception.AmiyaException;
+
 /**
  * A utility class for parsing date-time strings into LocalDateTime objects.
  */
@@ -18,12 +20,12 @@ public class DateTimeParser {
      * @return A LocalDateTime object representing the parsed date and time.
      * @throws IllegalArgumentException If the provided date-time format is unsupported.
      */
-    public static LocalDateTime parseDateTime(String dateTime) {
+    public static LocalDateTime parseDateTime(String dateTime) throws AmiyaException {
         dateTime = dateTime.trim();
         if (dateTime.matches(DATE_TIME_PATTERN)) {
             return parseDateTimeWithFormat(dateTime);
         } else {
-            throw new IllegalArgumentException("Unsupported date-time format");
+            throw new AmiyaException("this is an unsupported date-time format. Correct format: dd-MM-yyyy HH:mm");
         }
     }
 

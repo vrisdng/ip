@@ -1,5 +1,6 @@
 package amiya.task;
 
+import amiya.exception.AmiyaException;
 import amiya.parser.DateTimeParser;
 
 import java.time.LocalDateTime;
@@ -8,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     private LocalDateTime dueDate;
 
-    public Deadline(String description, String dueDate) {
+    public Deadline(String description, String dueDate) throws AmiyaException {
         super(description);
         this.dueDate = DateTimeParser.parseDateTime(dueDate);
     }

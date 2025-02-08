@@ -1,5 +1,7 @@
 package amiya.task;
 
+import amiya.exception.AmiyaException;
+
 /**
  * Abstract class representing a task with a description and completion status.
  * Subclasses must implement methods to specify task type and file format.
@@ -100,7 +102,7 @@ abstract public class Task {
      * @param line A string representing a stored task.
      * @return The corresponding Task object, or null if the format is invalid.
      */
-    public static Task fromFileFormat(String line) {
+    public static Task fromFileFormat(String line) throws AmiyaException {
         String[] parts = line.split("\\|");
         if (parts.length < 3)
             return null;

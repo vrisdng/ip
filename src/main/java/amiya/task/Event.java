@@ -1,5 +1,6 @@
 package amiya.task;
 
+import amiya.exception.AmiyaException;
 import amiya.parser.DateTimeParser;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ public class Event extends Task {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    public Event(String description, String start, String end) {
+    public Event(String description, String start, String end) throws AmiyaException {
         super(description);
         this.startTime = DateTimeParser.parseDateTime(start);
         this.endTime = DateTimeParser.parseDateTime(end);
