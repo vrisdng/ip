@@ -1,11 +1,11 @@
 package amiya;
 
-import java.util.Scanner;
 import java.io.*;
 
 import amiya.command.Command;
 import amiya.storage.Storage;
 import amiya.task.*;
+import amiya.storage.Storage;
 import amiya.ui.Ui;
 import amiya.parser.Parser;
 import amiya.exception.AmiyaException;
@@ -36,6 +36,10 @@ public class Amiya {
             ui.showLoadingError();
             taskList = new TaskList();
         }
+    }
+
+    public Amiya() {
+        super();
     }
 
     public void run() {
@@ -85,5 +89,12 @@ public class Amiya {
         } catch (AmiyaException e) {
             ui.showError(e.getMessage());
         }
+    }
+
+    /**
+     * Generates a response for the user's chat message.
+     */
+    public String getResponse(String input) {
+        return "Amiya heard: " + input;
     }
 }
