@@ -11,7 +11,6 @@ import amiya.task.*;
  * If the input is invalid or incomplete, it throws an AmiyaException with an appropriate error message.
  */
 public class Parser {
-
     /**
      * Parses a user command into a Task object based on the specified format.
      * The command can represent a TODO, DEADLINE, or EVENT task, with the appropriate details extracted.
