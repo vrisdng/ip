@@ -6,9 +6,8 @@ import amiya.ui.Ui;
 
 public class ExitCommand extends Command {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.exit();
-        System.exit(0);
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return ui.exit();
     }
 
     @Override

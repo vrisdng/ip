@@ -16,14 +16,14 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
         if (description.isBlank() || by.isBlank()) {
             throw new AmiyaException("deadline description and due date cannot be empty.");
         }
 
         Deadline deadline = new Deadline(description, by);
         taskList.addTask(deadline);
-        ui.showTaskAdded(deadline, taskList.size());
         storage.save(taskList.getTasks());
+        return ui.showTaskAdded(deadline, taskList.size());
     }
 }

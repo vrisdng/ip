@@ -2,6 +2,7 @@ import java.io.IOException;
 
 import amiya.Amiya;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -46,10 +47,12 @@ public class Main extends Application {
     private void handleUserInput() {
         String userText = userInput.getText();
         String amiyaText = amiya.getResponse(userInput.getText());
-        dialogContainer.getChildren().addAll(
-                DialogueBox.getUserDialog(userText, userImage),
-                DialogueBox.getAmiyaDialog(amiyaText, amiyaImage)
-        );
+        Platform.runLater(() -> {
+            dialogContainer.getChildren().addAll(
+                    DialogueBox.getUserDialog(userText, userImage),
+                    DialogueBox.getAmiyaDialog(amiyaText, amiyaImage)
+            );
+        });
         userInput.clear();
     }
 }

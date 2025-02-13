@@ -13,9 +13,9 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
         taskList.markTask(index);
-        ui.showTaskMarked(taskList.getTasks().get(index - 1));
         storage.save(taskList.getTasks());
+        return ui.showTaskMarked(taskList.getTasks().get(index - 1));
     }
 }

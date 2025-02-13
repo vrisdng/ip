@@ -13,7 +13,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
-        ui.showFoundTasks(taskList.findTasks(keyword));
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
+        return ui.showFoundTasks(taskList.findTasks(keyword));
     }
 }

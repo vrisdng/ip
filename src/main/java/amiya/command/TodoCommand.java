@@ -14,14 +14,14 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
         if (description.isBlank()) {
             throw new AmiyaException("ToDo description cannot be empty.");
         }
 
         Todo todo = new Todo(description);
         taskList.addTask(todo);
-        ui.showTaskAdded(todo, taskList.size());
         storage.save(taskList.getTasks());
+        return ui.showTaskAdded(todo, taskList.size());
     }
 }
