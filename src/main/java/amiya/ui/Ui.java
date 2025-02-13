@@ -1,6 +1,9 @@
 package amiya.ui;
 
 import amiya.task.Task;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -177,5 +180,16 @@ public class Ui {
      */
     public void showTasksCleared() {
         System.out.println("All tasks have been cleared!");
+    }
+
+    public static void showTasksForDate(LocalDateTime date, List<Task> tasks) {
+        System.out.println("Tasks for " + date.toString() + ":");
+        for (Task task : tasks) {
+            System.out.println(task.toString());
+        }
+    }
+
+    public static void showNoTasksForDate(LocalDateTime date) {
+        System.out.println("No tasks found for " + date.toString());
     }
 }
