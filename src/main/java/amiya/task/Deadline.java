@@ -11,7 +11,10 @@ public class Deadline extends Task {
 
     public Deadline(String description, String dueDate) throws AmiyaException {
         super(description);
+        assert description != null && !description.trim().isEmpty() : "Description should not be null or empty";
+        assert dueDate != null && !dueDate.trim().isEmpty() : "Due date string should not be null or empty";
         this.dueDate = DateTimeParser.parseDateTime(dueDate);
+        assert this.dueDate != null : "Parsed due date should not be null";
     }
 
     public String getFormattedDueDate(DateTimeFormatter formatter) {

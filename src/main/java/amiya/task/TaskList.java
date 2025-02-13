@@ -18,6 +18,7 @@ public class TaskList {
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
+        assert tasks != null : "Task list should not be null";
     }
 
     /**
@@ -26,6 +27,7 @@ public class TaskList {
      * @param tasks The list of tasks to initialize with.
      */
     public TaskList(List<Task> tasks) {
+        assert tasks != null : "Task list should not be null";
         this.tasks = tasks;
     }
 
@@ -35,7 +37,9 @@ public class TaskList {
      * @param task The task to be added.
      */
     public void addTask(Task task) {
+        assert task != null : "Cannot add a null task";
         tasks.add(task);
+        assert tasks.size() > 0 : "Task list should have at least one task now.";
     }
 
     /**
@@ -46,12 +50,14 @@ public class TaskList {
      */
 
     public List<Task> findTasks(String keyword) {
+        assert keyword != null && !keyword.trim().isEmpty() : "Keyword should not be null or empty";
         List<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks) {
             if (task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {
                 matchingTasks.add(task);
             }
         }
+        assert matchingTasks != null : "Matching tasks list should not be null";
         return matchingTasks;
     }
 
@@ -64,6 +70,7 @@ public class TaskList {
      */
 
     public Task removeTask(int taskId) throws AmiyaException {
+        assert taskId > 0 : "Task ID must be greater than 0";
         if (tasks.isEmpty()) {
             throw new AmiyaException("there are no tasks to remove.");
         }
@@ -72,6 +79,7 @@ public class TaskList {
         }
         Task task = tasks.get(taskId - 1);
         tasks.remove(taskId - 1);
+        assert !tasks.contains(task) : "The task should be removed from the list";
         return task;
     }
 
@@ -80,6 +88,7 @@ public class TaskList {
      */
     public void clearTasks() {
         tasks.clear();
+        assert tasks.isEmpty() : "Task list should be empty after clear";
     }
 
     /**
@@ -101,6 +110,7 @@ public class TaskList {
             throw new AmiyaException("you have already marked this task.");
         }
         task.mark();
+        assert task.getStatus() : "Task should be marked as done";
     }
 
     /**
@@ -110,6 +120,7 @@ public class TaskList {
      * @throws AmiyaException If the task list is empty or the task ID is invalid.
      */
     public void unmarkTask(int taskId) throws AmiyaException {
+        assert taskId > 0 : "Task ID must be greater than 0";
         if (tasks.isEmpty()) {
             Ui.showNoTasks();
         }
@@ -122,6 +133,7 @@ public class TaskList {
             throw new AmiyaException("this task is already unmarked.");
         }
         task.unmark();
+        assert !task.getStatus() : "Task should be unmarked after unmarking";
     }
 
     /**
@@ -131,6 +143,7 @@ public class TaskList {
      * @return The corresponding task.
      */
     public Task getTask(int index) {
+        assert index >= 0 && index < tasks.size() : "Index must be valid";
         return tasks.get(index);
     }
 
@@ -140,6 +153,7 @@ public class TaskList {
      * @return The total count of tasks.
      */
     public int size() {
+        assert tasks != null : "Task list should not be null";
         return tasks.size();
     }
 
@@ -149,6 +163,7 @@ public class TaskList {
      * @return The list of tasks.
      */
     public List<Task> getTasks() {
+        assert tasks != null : "Task list should not be null";
         return tasks;
     }
 }
