@@ -1,6 +1,7 @@
 package amiya;
 
 import java.io.*;
+import java.util.Scanner;
 
 import amiya.command.Command;
 import amiya.storage.Storage;
