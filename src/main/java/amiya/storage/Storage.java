@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Storage {
 
-    private String filePath;
+    private static String filePath;
 
     /**
      * Constructs a Storage object with the specified file path.
@@ -43,25 +43,8 @@ public class Storage {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(" \\| ");
-                Task task = null;
-
-                switch (parts[0]) {
-                    case "TODO":
-                        task = new Todo(parts[2]);
-                        break;
-                    case "DEADLINE":
-                        task = new Deadline(parts[2], parts[3]);
-                        break;
-                    case "EVENT":
-                        task = new Event(parts[2], parts[3], parts[4]);
-                        break;
-                }
-
+                Task task = parseTask(line);
                 if (task != null) {
-                    if (parts[1].equals("1")) {
-                        task.mark(); // Set task as done
-                    }
                     taskList.add(task);
                 }
             }
@@ -69,6 +52,36 @@ public class Storage {
             throw new RuntimeException(e);
         }
         return taskList;
+    }
+
+    /**
+     * Parses a line of text and creates a Task object.
+     *
+     * @param line The line of text to parse.
+     * @return The created Task object or null if parsing fails.
+     */
+    private Task parseTask(String line) throws AmiyaException {
+        String[] parts = line.split(" \\| ");
+        Task task = null;
+
+        switch (parts[0]) {
+        case "TODO":
+            task = new Todo(parts[2]);
+            break;
+        case "DEADLINE":
+            task = new Deadline(parts[2], parts[3]);
+            break;
+        case "EVENT":
+            task = new Event(parts[2], parts[3], parts[4]);
+            break;
+        default:
+            throw new AmiyaException("invalid task");
+        }
+
+        if (task != null && parts[1].equals("1")) {
+            task.mark(); // Mark task as done if applicable
+        }
+        return task;
     }
 
     /**
