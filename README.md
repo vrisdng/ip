@@ -27,8 +27,8 @@ To run the application, follow these simple steps:
    First, clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/amiya.git
-   cd amiya
+   git clone https://github.com/vrisdng/ip.git
+   cd ip
    ```
 2. **Run the application**:
    ```./gradlew run```
