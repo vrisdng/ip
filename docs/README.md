@@ -110,3 +110,7 @@ Here are some example of commands that you might find useful:
 - Java 8 or later
 - Gradle (automatically handled by the wrapper)
 
+## Sample images
+
+![Example Image](Ui.png)
+![Example Image](sample2.png)
