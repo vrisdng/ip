@@ -14,9 +14,9 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
         Task removedTask = taskList.removeTask(index);
-        ui.showTaskDeleted(removedTask, taskList.size());
         storage.save(taskList.getTasks());
+        return ui.showTaskDeleted(removedTask, taskList.size());
     }
 }

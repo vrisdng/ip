@@ -99,7 +99,7 @@ public class TaskList {
      */
     public void markTask(int taskId) throws AmiyaException {
         if (tasks.isEmpty()) {
-            Ui.showNoTasks();
+            throw new AmiyaException("there are no tasks to remove.");
         }
 
         if (taskId - 1 < 0 || taskId - 1 >= tasks.size()) {
@@ -122,7 +122,7 @@ public class TaskList {
     public void unmarkTask(int taskId) throws AmiyaException {
         assert taskId > 0 : "Task ID must be greater than 0";
         if (tasks.isEmpty()) {
-            Ui.showNoTasks();
+            throw new AmiyaException("there are no tasks to remove.");
         }
 
         if (taskId - 1 < 0 || taskId - 1 >= tasks.size()) {

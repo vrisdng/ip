@@ -13,9 +13,9 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
         taskList.unmarkTask(index);
-        ui.showTaskUnmarked(taskList.getTasks().get(index - 1));
         storage.save(taskList.getTasks());
+        return ui.showTaskUnmarked(taskList.getTasks().get(index - 1));
     }
 }

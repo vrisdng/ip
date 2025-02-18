@@ -12,9 +12,10 @@ public abstract class Command {
      * @param taskList The list of tasks.
      * @param ui       The UI for displaying messages.
      * @param storage  The storage to save changes.
+     * @return
      * @throws AmiyaException If an error occurs during execution.
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException;
+    public abstract String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException;
 
     /**
      * Determines if this command exits the application.

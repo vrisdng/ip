@@ -12,7 +12,7 @@ public class EchoCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.echo(message);
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return ui.echo(message);
     }
 }

@@ -18,14 +18,14 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
         if (description.isBlank() || from.isBlank() || to.isBlank()) {
             throw new AmiyaException("event description, start, and end times cannot be empty.");
         }
 
         Event event = new Event(description, from, to);
         taskList.addTask(event);
-        ui.showTaskAdded(event, taskList.size());
         storage.save(taskList.getTasks());
+        return ui.showTaskAdded(event, taskList.size());
     }
 }

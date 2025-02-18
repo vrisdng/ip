@@ -1,4 +1,5 @@
 import amiya.Amiya;
+import amiya.ui.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -20,9 +21,10 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Amiya amiya;
+    private Ui ui = new Ui();
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/Amiya.jpg"));
+    private Image amiyaImage = new Image(this.getClass().getResourceAsStream("/images/Amiya.jpg"));
 
     @FXML
     public void initialize() {
@@ -32,6 +34,9 @@ public class MainWindow extends AnchorPane {
     /** Injects the Duke instance */
     public void setAmiya(Amiya a) {
         amiya = a;
+        dialogContainer.getChildren().add(
+                DialogueBox.getAmiyaDialog(ui.giveGreetings("Amiya"), amiyaImage)
+        );
     }
 
     /**
@@ -44,7 +49,7 @@ public class MainWindow extends AnchorPane {
         String response = amiya.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogueBox.getUserDialog(input, userImage),
-                DialogueBox.getAmiyaDialog(response, dukeImage)
+                DialogueBox.getAmiyaDialog(response, amiyaImage)
         );
         userInput.clear();
     }

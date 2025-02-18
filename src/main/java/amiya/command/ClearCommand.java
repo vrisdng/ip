@@ -16,12 +16,13 @@ public class ClearCommand extends Command {
      * @param taskList The list of tasks.
      * @param ui       The user interface for displaying messages.
      * @param storage  The storage system for saving changes.
+     * @return
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.clearTasks();
         storage.save(taskList.getTasks());  // Persist the empty list
-        ui.showTasksCleared();
+        return ui.showTasksCleared();
     }
 
     /**

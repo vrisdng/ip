@@ -6,7 +6,7 @@ import amiya.ui.Ui;
 
 public class ListCommand extends Command {
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        ui.showTasks(taskList.getTasks());
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return ui.showTasks(taskList.getTasks());
     }
 }

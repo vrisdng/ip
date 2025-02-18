@@ -33,7 +33,7 @@ public class Storage {
      * @throws IOException If an I/O error occurs during reading from the file.
      */
     public List<Task> load() throws IOException {
-        File file = new File(filePath);
+        File file = new File("data/Amiya.txt");
         if (!file.exists()) {
             file.createNewFile();
             return new ArrayList<>();
