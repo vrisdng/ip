@@ -35,6 +35,14 @@ public class Event extends Task {
         return TaskType.EVENT.name();
     }
 
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
     @Override
     public String toFileFormat() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy HH:mm");

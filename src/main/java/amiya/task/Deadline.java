@@ -32,6 +32,10 @@ public class Deadline extends Task {
         return TaskType.DEADLINE.name();
     }
 
+    public LocalDateTime getDueDate() {
+        return dueDate;
+    }
+
     @Override
     public String toFileFormat() {
         return "DEADLINE | " + (isDone ? "1" : "0") + " | " + description + " | "
