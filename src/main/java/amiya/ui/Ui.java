@@ -3,7 +3,6 @@ package amiya.ui;
 import amiya.task.Task;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -104,5 +103,21 @@ public class Ui {
 
     public String showTasksCleared() {
         return "All tasks have been cleared!";
+    }
+
+    public String showTasksForDate(LocalDate date, List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            return showNoTasksForDate(date);
+        } else {
+            StringBuilder sb = new StringBuilder("Here are the tasks on " + date + ":\n");
+            for (int i = 0; i < tasks.size(); i++) {
+                sb.append("   ").append(i + 1).append(". ").append(tasks.get(i)).append("\n");
+            }
+            return sb.toString().trim();
+        }
+    }
+
+    public String showNoTasksForDate(LocalDate date) {
+        return "No tasks found for " + date.toString();
     }
 }

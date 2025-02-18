@@ -5,32 +5,30 @@ import amiya.storage.Storage;
 import amiya.task.Task;
 import amiya.task.Deadline;
 import amiya.task.Event;
+import amiya.task.TaskList;
 import amiya.ui.Ui;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ScheduleCommand {
+public class ScheduleCommand extends Command {
 
+    private String dateInput;
+    private Ui ui;
     private Storage storage;
 
-    public ScheduleCommand(Storage storage) {
-        this.storage = storage;
+    public ScheduleCommand(String date) {
+        this.dateInput = date;
     }
 
-    /**
-     * Executes the schedule command and displays tasks on the given date.
-     * @param dateInput The date provided by the user in dd/MM/yyyy format.
-     */
-    public void execute(String dateInput) throws AmiyaException {
+
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
         try {
             // Parse the date input to a LocalDate object
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDateTime date = LocalDateTime.parse(dateInput, formatter);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate date = LocalDate.parse(dateInput, formatter);
 
             // Load the tasks from the storage
             List<Task> tasks = storage.load();
@@ -42,13 +40,13 @@ public class ScheduleCommand {
 
             // Display the tasks if any are found
             if (!tasksForDate.isEmpty()) {
-                Ui.showTasksForDate(date, tasksForDate);
+                return ui.showTasksForDate(date, tasksForDate);
             } else {
-                Ui.showNoTasksForDate(date);
+                return ui.showNoTasksForDate(date);
             }
 
         } catch (Exception e) {
-            throw new AmiyaException("wrong date format");
+            throw new AmiyaException("wrong date format (should be dd-mm-yyyy)");
         }
     }
 
@@ -58,16 +56,17 @@ public class ScheduleCommand {
      * @param date The date to compare.
      * @return true if the task is on the given date, false otherwise.
      */
-    private boolean isTaskOnDate(Task task, LocalDateTime date) {
+    private boolean isTaskOnDate(Task task, LocalDate date) {
         if (task instanceof Deadline) {
             // Check if the deadline task is on the given date
             LocalDate taskDate = ((Deadline) task).getDueDate().toLocalDate();
             return taskDate.equals(date);
         } else if (task instanceof Event) {
             // Check if the event falls on the given date
-            LocalDate taskStartDate = ((Event) task).getStartTime().toLocalDate();
-            LocalDate taskEndDate = ((Event) task).getEndTime().toLocalDate();
-            return !taskStartDate.isAfter(ChronoLocalDate.from(date)) && !taskEndDate.isBefore(ChronoLocalDate.from(date));
+            LocalDate startDate = ((Event) task).getStartTime().toLocalDate();
+            LocalDate endDate = ((Event) task).getEndTime().toLocalDate();
+            return (date.isEqual(startDate) || date.isEqual(endDate)) || 
+                   (date.isAfter(startDate) && date.isBefore(endDate));
         }
         return false;
     }
