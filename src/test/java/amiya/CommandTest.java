@@ -84,7 +84,7 @@ class CommandTest {
     }
 
     @Test
-    void executeClearCommand_clearsTaskList() {
+    void executeClearCommand_clearsTaskList() throws AmiyaException {
         taskList.addTask(new Todo("Task 1"));
         taskList.addTask(new Todo("Task 2"));
         ClearCommand command = new ClearCommand();
