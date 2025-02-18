@@ -3,6 +3,7 @@ package amiya;
 import amiya.command.*;
 import amiya.exception.AmiyaException;
 import amiya.storage.Storage;
+import amiya.task.Deadline;
 import amiya.task.Task;
 import amiya.task.TaskList;
 import amiya.task.Todo;
@@ -93,12 +94,40 @@ class CommandTest {
     }
 
     @Test
+    void executeListCommand_withTasks_printsTasks() throws AmiyaException {
+        taskList.addTask(new Todo("Finish homework"));
+        taskList.addTask(new Todo("Attend meeting"));
+
+        ListCommand command = new ListCommand();
+        command.execute(taskList, ui, storage);
+        assertEquals(2, taskList.size());
+    }
+
+    @Test
     void executeFindCommand_validKeyword_findsTasks() throws AmiyaException {
         taskList.addTask(new Todo("Meeting with team"));
         taskList.addTask(new Todo("Finish assignment"));
         FindCommand command = new FindCommand("Meeting");
         command.execute(taskList, ui, storage);
         // Manual console check required
+    }
+
+    @Test
+    void executeScheduleCommand_setsScheduleForTask() throws AmiyaException {
+        DeadlineCommand deadline = new DeadlineCommand("Finish homework", "01-03-2024 10:00");
+        deadline.execute(taskList, ui, storage);
+
+        ScheduleCommand scheduleCommand = new ScheduleCommand("01-03-2024");
+        scheduleCommand.execute(taskList, ui, storage);
+
+        Task task = taskList.getTasks().get(0);
+
+        if (task instanceof Deadline) {
+            Deadline deadlineTask = (Deadline) task;  // Casting to Deadline
+            assertNotNull(deadlineTask.getDueDate());  // Check if due date is not null
+        } else {
+            fail("Task is not an instance of Deadline");
+        }
     }
 
     @Test

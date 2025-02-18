@@ -92,7 +92,6 @@ public class Storage {
      */
     public void save(List<Task> tasks) throws AmiyaException {
         File file = new File(filePath);
-        file.getParentFile().mkdirs();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             for (Task task : tasks) {
