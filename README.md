@@ -46,6 +46,7 @@ Format: ```list```
 ## Marking and unmarking a task
 
 Format: ```mark <index of task>```
+Format: ```unmark <index of task>```
 
 ## Finding tasks
 
