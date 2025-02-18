@@ -11,7 +11,69 @@ import java.util.List;
 public class Ui {
 
     public String giveGreetings(String name) {
-        return "Hello Dokutah! I'm " + name + ".\nWhat can I do for you?";
+        StringBuilder sb = new StringBuilder("Hello Dokutah! I'm " + name + ". What can I do for you? \n");
+        sb.append("Here's a list of commands you can use: \n");
+        sb.append(listCommand());
+        return sb.toString();
+    }
+
+    public String listCommand() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("1. **bye**\n");
+        sb.append("   - Exits the application.\n");
+        sb.append("   - Usage: `bye`\n\n");
+
+        sb.append("2. **list**\n");
+        sb.append("   - Lists all tasks.\n");
+        sb.append("   - Usage: `list`\n\n");
+
+        sb.append("3. **echo**\n");
+        sb.append("   - Repeats the text you provide.\n");
+        sb.append("   - Usage: `echo <text>`\n");
+        sb.append("   - Example: `echo Hello World!`\n\n");
+
+        sb.append("4. **find**\n");
+        sb.append("   - Searches for tasks containing the given keyword.\n");
+        sb.append("   - Usage: `find <keyword>`\n");
+        sb.append("   - Example: `find meeting`\n\n");
+
+        sb.append("5. **view**\n");
+        sb.append("   - Views tasks scheduled for a specific date.\n");
+        sb.append("   - Usage: `view <dd/mm/yyyy>`\n");
+        sb.append("   - Example: `view 12/03/2025`\n\n");
+
+        sb.append("6. **mark**\n");
+        sb.append("   - Marks a task as completed by task number.\n");
+        sb.append("   - Usage: `mark <task number>`\n");
+        sb.append("   - Example: `mark 1`\n\n");
+
+        sb.append("7. **unmark**\n");
+        sb.append("   - Unmarks a completed task by task number.\n");
+        sb.append("   - Usage: `unmark <task number>`\n");
+        sb.append("   - Example: `unmark 1`\n\n");
+
+        sb.append("8. **remove**\n");
+        sb.append("   - Removes a task by task number.\n");
+        sb.append("   - Usage: `remove <task number>`\n");
+        sb.append("   - Example: `remove 1`\n\n");
+
+        sb.append("9. **todo**\n");
+        sb.append("   - Adds a new ToDo task.\n");
+        sb.append("   - Usage: `todo <description>`\n");
+        sb.append("   - Example: `todo Buy groceries`\n\n");
+
+        sb.append("10. **deadline**\n");
+        sb.append("    - Adds a new Deadline task with a due date.\n");
+        sb.append("    - Usage: `deadline <description> /by <dd-MM-yyyy HH:mm>`\n");
+        sb.append("    - Example: `deadline Submit report /by 15-03-2025 23:59`\n\n");
+
+        sb.append("11. **event**\n");
+        sb.append("    - Adds a new Event task with a start and end time.\n");
+        sb.append("    - Usage: `event <description> /from <dd-MM-yyyy HH:mm> /to <dd-MM-yyyy HH:mm>`\n");
+        sb.append("    - Example: `event Team meeting /from 10-03-2025 09:00 /to 10-03-2025 11:00`\n\n");
+
+        return sb.toString();
     }
 
     public String exit() {
