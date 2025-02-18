@@ -91,7 +91,7 @@ public class Ui {
     public String translateToJapanese(String command) {
         return switch (command.toLowerCase()) {
             case "hi" -> "こんにちは!";
-            case "hello" -> "こんにちは!";
+            case "hello" -> "您好!";
             case "thank you" -> "ありがとう!";
             default -> command;
         };
@@ -151,16 +151,8 @@ public class Ui {
         return "OK, I have unmarked this task:\n   " + task;
     }
 
-    public String showNoTasks() {
-        return "There are no tasks to mark. Please add some tasks first.";
-    }
-
     public String showTaskListEmpty() {
         return "Currently there are no tasks. Have a rest!";
-    }
-
-    public String showInvalidCommand(String message) {
-        return message;
     }
 
     public String showTasksCleared() {

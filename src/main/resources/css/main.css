@@ -4,13 +4,13 @@
 }
 
 .text-field {
-    -fx-background-color: #d9ffe2;
-    -fx-font: 20px "Arial";
+    -fx-background-color: #A8EFF0;
+    -fx-font: 20px "Noto Sans", sans-serif;
 }
 
 .button {
-    -fx-background-color: mediumspringgreen;
-    -fx-font: italic bold 16px "Arial";
+    -fx-background-color: #31B3C8;
+    -fx-font: italic bold 16px "Noto Sans", sans-serif;
 }
 
 .button:hover {
@@ -34,7 +34,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #ff9cb4;
+    -fx-background-color: #463C33;
     -fx-background-radius: 1em;
 }
 
