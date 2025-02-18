@@ -27,14 +27,26 @@ To run the application, follow these simple steps:
    First, clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/amiya.git
-   cd amiya
+   git clone https://github.com/vrisdng/ip.git
+   cd ip
    ```
 2. **Run the application**:
    ```./gradlew run```
 
 ## How to test
 ```./gradlew test```
+
+## How to use
+
+When you run the application, Amiya will greet you with a manual of what commands you can use.
+
+Here are some example of commands that you might find useful:
+
+- Task Example: Add a task with: ```todo Finish homework```
+
+- Mark a task as done with: ```mark 1```
+
+- Remove a task with: ```remove 1```
 
 ## Dependencies
 - Java 8 or later
