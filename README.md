@@ -17,6 +17,64 @@ Amiya is a chatbot and task manager that helps you keep track of your to-do list
 - **File Persistence**: Your tasks are saved to a file so you can continue where you left off.
 - **Task Search**: Find specific tasks with a keyword.
 
+## Echoing texts
+
+Amiya can speak Japanese and Chinese when you say hi/hello to her by using "echo". Try ```echo thank you``` also!
+
+## Adding a task 
+
+Adds a task to the task list. There are 3 types of tasks available. Note the format.
+
+# Todo
+
+Format: ```todo <DESCRIPTION> ```
+
+# Event
+
+Format: ```event <DESCRIPTION> \by <dd-MM-yyyy>```
+
+# Deadline
+
+Format: ```deadline <DESCRIPTION> \from <dd-MM-yyyy> \to <dd-MMMM-yyyy>```
+
+## Listing tasks
+
+List the tasks in order of adding. 1-indexed. 
+
+Format: ```list```
+
+## Marking and unmarking a task
+
+Format: ```mark <index of task>```
+
+## Finding tasks
+
+Find a task based on a given keyword. Tasks found will match the exact keyword.
+
+Format: ```find <keyword>```
+
+# View task schedule by date
+
+Find tasks based on a given date. Tasks found will have dates exactly happen IN/DURING the given time.
+
+Format: ```view dd-mm-yyyy```
+
+## Removing tasks
+
+Remove tasks based on indexes.
+
+Format: ```remove <index of task>```
+
+## Clearing all tasks
+
+Delete all tasks from the list.
+
+Format: ```clear```
+
+## Saving and loading the data
+
+Amiya automatically loads and saves your task lists to hard disk automatically after any command that changes the data. There is no need to save the data manually. 
+
 ---
 
 ## How to Run
