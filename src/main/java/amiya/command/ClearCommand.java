@@ -1,5 +1,6 @@
 package amiya.command;
 
+import amiya.exception.AmiyaException;
 import amiya.storage.Storage;
 import amiya.task.TaskList;
 import amiya.ui.Ui;
@@ -19,7 +20,7 @@ public class ClearCommand extends Command {
      * @return
      */
     @Override
-    public String execute(TaskList taskList, Ui ui, Storage storage) {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws AmiyaException {
         taskList.clearTasks();
         storage.save(taskList.getTasks());  // Persist the empty list
         return ui.showTasksCleared();

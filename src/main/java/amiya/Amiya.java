@@ -1,7 +1,6 @@
 package amiya;
 
 import java.io.*;
-import java.util.Scanner;
 
 import amiya.command.Command;
 import amiya.storage.Storage;
@@ -47,57 +46,6 @@ public class Amiya {
         } catch (IOException e) {
             System.out.println(ui.showLoadingError());
             taskList = new TaskList();
-        }
-        taskList = new TaskList();
-    }
-
-    public void run() {
-        System.out.println(ui.giveGreetings("Amiya"));
-
-        if (!taskList.getTasks().isEmpty()) {
-            System.out.println("Previously saved tasks have been loaded:");
-            System.out.println(ui.showTasks(taskList.getTasks()));
-        } else {
-            System.out.println("No saved tasks found.");
-        }
-
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            try {
-                String input = scanner.nextLine().trim();
-                Command command = Parser.parseCommand(input);
-
-                command.execute(taskList, ui, storage);
-
-                if (command.isExit()) {
-                    System.out.println("Exiting...");
-                    System.exit(0);
-                    break;
-                }
-            } catch (AmiyaException e) {
-                System.out.println(ui.showInvalidCommand(e.getMessage()));
-            }
-        }
-        scanner.close();
-    }
-
-    public static void main(String[] args) {
-        new Amiya("data/Amiya.txt").run();
-    }
-
-    /**
-     * Parses and adds a task based on user input.
-     * Displays appropriate messages upon successful task addition or error.
-     *
-     * @param command The user command containing task details.
-     */
-    public static void handleTasks(String command) {
-        try {
-            Task task = Parser.parseTask(command);
-            taskList.addTask(task);
-            ui.showTaskAdded(task, taskList.size());
-        } catch (AmiyaException e) {
-            ui.showError(e.getMessage());
         }
     }
 

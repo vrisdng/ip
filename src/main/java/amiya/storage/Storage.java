@@ -33,7 +33,7 @@ public class Storage {
      * @throws IOException If an I/O error occurs during reading from the file.
      */
     public List<Task> load() throws IOException {
-        File file = new File("data/Amiya.txt");
+        File file = new File(filePath);
         if (!file.exists()) {
             file.createNewFile();
             return new ArrayList<>();
@@ -90,8 +90,8 @@ public class Storage {
      *
      * @param tasks The list of Task objects to save to the file.
      */
-    public void save(List<Task> tasks) {
-        File file = new File("data/Amiya.txt");
+    public void save(List<Task> tasks) throws AmiyaException {
+        File file = new File(filePath);
         file.getParentFile().mkdirs();
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
@@ -100,7 +100,7 @@ public class Storage {
                 writer.newLine();
             }
         } catch (IOException e) {
-            System.out.println("Error saving tasks to file: " + e.getMessage());
+            throw new AmiyaException("unable to save to file.");
         }
     }
 }
