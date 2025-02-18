@@ -36,6 +36,18 @@ To run the application, follow these simple steps:
 ## How to test
 ```./gradlew test```
 
+## How to use
+
+When you run the application, Amiya will greet you with a manual of what commands you can use.
+
+Here are some example of commands that you might find useful:
+
+- Task Example: Add a task with: ```todo Finish homework```
+
+- Mark a task as done with: ```mark 1```
+
+- Remove a task with: ```remove 1```
+
 ## Dependencies
 - Java 8 or later
 - Gradle (automatically handled by the wrapper)
