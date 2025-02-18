@@ -23,6 +23,7 @@ public class Parser {
         case "mark": return parseMark(parts);
         case "unmark": return parseUnmark(parts);
         case "remove": return parseRemove(parts);
+        case "clear": return parseClear(parts);
         case "todo": return parseTodo(parts);
         case "deadline": return parseDeadline(parts);
         case "event": return parseEvent(parts);
@@ -57,6 +58,10 @@ public class Parser {
 
     private static Command parseRemove(String[] parts) {
         return new RemoveCommand(Integer.parseInt(parts[1]));
+    }
+
+    private static Command parseClear(String[] parts) {
+        return new ClearCommand();
     }
 
     private static Command parseTodo(String[] parts) throws AmiyaException {
