@@ -1,3 +1,3 @@
-TODO | 1 | Do daily misssion
+TODO | 1 | Do daily mission
 DEADLINE | 1 | Submit assignment | 20-12-2025 23:59
 EVENT | 0 | Team meeting | 14-12-2025 14:00 | 15-12-2025 15:00

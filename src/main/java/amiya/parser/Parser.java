@@ -32,31 +32,44 @@ public class Parser {
     }
 
     private static Command parseEcho(String[] parts) throws AmiyaException {
-        if (parts.length < 2) throw new AmiyaException("Echo command requires a text.");
+        if (parts.length < 2) {
+            throw new AmiyaException("echo command requires a text.");
+        }
         return new EchoCommand(parts[1].trim());
     }
 
     private static Command parseFind(String[] parts) throws AmiyaException {
-        if (parts.length < 2) throw new AmiyaException("Find command requires a keyword.");
+        if (parts.length < 2) {
+            throw new AmiyaException("find command requires a keyword.");
+        }
         return new FindCommand(parts[1].trim());
     }
 
     private static Command parseView(String[] parts) throws AmiyaException {
         if (parts.length < 2 || parts[1].trim().isEmpty()) {
-            throw new AmiyaException("View command requires a date (in dd/mm/yyyy format).");
+            throw new AmiyaException("view command requires a date (in dd/mm/yyyy format).");
         }
         return new ScheduleCommand(parts[1].trim());
     }
 
-    private static Command parseMark(String[] parts) {
+    private static Command parseMark(String[] parts) throws AmiyaException {
+        if (parts.length < 2 || parts[1].isEmpty()) {
+            throw new AmiyaException("please give the index of the task you want to mark.");
+        }
         return new MarkCommand(Integer.parseInt(parts[1]));
     }
 
-    private static Command parseUnmark(String[] parts) {
+    private static Command parseUnmark(String[] parts) throws AmiyaException {
+        if (parts.length < 2 || parts[1].isEmpty()) {
+            throw new AmiyaException("please give the index of the task you want to unmark.");
+        }
         return new UnmarkCommand(Integer.parseInt(parts[1]));
     }
 
-    private static Command parseRemove(String[] parts) {
+    private static Command parseRemove(String[] parts) throws AmiyaException {
+        if (parts.length < 2 || parts[1].isEmpty()) {
+            throw new AmiyaException("please give the index of the task you want to remove.");
+        }
         return new RemoveCommand(Integer.parseInt(parts[1]));
     }
 
@@ -85,39 +98,5 @@ public class Parser {
         if (eventParts.length < 3)
             throw new AmiyaException("Please follow event format: event <description> /from <dd-MM-yyyy HH:mm> /to <dd-MM-yyyy HH:mm>");
         return new EventCommand(eventParts[0].trim(), eventParts[1].trim(), eventParts[2].trim());
-    }
-
-    public static Task parseTask(String command) throws AmiyaException {
-        String[] parts = command.split(" /");
-        if (parts[0].trim().isEmpty() || !parts[0].contains(" ")) {
-            throw new AmiyaException("Task description cannot be empty.");
-        }
-        String description = parts[0].substring(parts[0].indexOf(" ") + 1).trim();
-        if (description.isEmpty()) throw new AmiyaException("Task description cannot be empty.");
-
-        if (command.startsWith("todo")) {
-            return new Todo(description);
-        } else if (command.startsWith("deadline")) {
-            return parseDeadlineTask(description, parts);
-        } else if (command.startsWith("event")) {
-            return parseEventTask(description, parts);
-        } else {
-            throw new AmiyaException("I don't know this task type. Available: todo, deadline, or event.");
-        }
-    }
-
-    private static Task parseDeadlineTask(String description, String[] parts) throws AmiyaException {
-        if (parts.length < 2) throw new AmiyaException("Missing /by date-time for deadline task.");
-        String by = parts[1].replaceFirst("^by\\s*", "").trim();
-        if (by.isEmpty()) throw new AmiyaException("Deadline date/time cannot be empty.");
-        return new Deadline(description, by);
-    }
-
-    private static Task parseEventTask(String description, String[] parts) throws AmiyaException {
-        if (parts.length < 3) throw new AmiyaException("Missing /from and /to date-time for event task.");
-        String from = parts[1].replaceFirst("^from\\s*", "").trim();
-        String to = parts[2].replaceFirst("^to\\s*", "").trim();
-        if (from.isEmpty() || to.isEmpty()) throw new AmiyaException("Event start and end time cannot be empty.");
-        return new Event(description, from, to);
     }
 }
