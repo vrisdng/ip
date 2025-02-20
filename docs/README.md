@@ -25,15 +25,15 @@ Amiya can speak Japanese and Chinese when you say hi/hello to her by using "echo
 
 Adds a task to the task list. There are 3 types of tasks available. Note the format.
 
-# Todo
+### Todo
 
 Format: ```todo <DESCRIPTION> ```
 
-# Event
+### Event
 
 Format: ```event <DESCRIPTION> \by <dd-MM-yyyy>```
 
-# Deadline
+### Deadline
 
 Format: ```deadline <DESCRIPTION> \from <dd-MM-yyyy> \to <dd-MMMM-yyyy>```
 
@@ -53,7 +53,7 @@ Find a task based on a given keyword. Tasks found will match the exact keyword.
 
 Format: ```find <keyword>```
 
-# View task schedule by date
+## View task schedule by date
 
 Find tasks based on a given date. Tasks found will have dates exactly happen IN/DURING the given time.
 

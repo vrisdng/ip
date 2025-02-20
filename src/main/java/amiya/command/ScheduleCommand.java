@@ -16,8 +16,6 @@ import java.util.stream.Collectors;
 public class ScheduleCommand extends Command {
 
     private String dateInput;
-    private Ui ui;
-    private Storage storage;
 
     public ScheduleCommand(String date) {
         this.dateInput = date;

@@ -2,7 +2,6 @@ package amiya.parser;
 
 import amiya.command.*;
 import amiya.exception.AmiyaException;
-import amiya.task.*;
 
 /**
  * The Parser class handles user input commands and converts them into Task objects.
@@ -10,6 +9,13 @@ import amiya.task.*;
  */
 public class Parser {
 
+/**
+     * Parses the user input command and returns the corresponding Command object.
+     *
+     * @param command The user input command as a string.
+     * @return The corresponding Command object.
+     * @throws AmiyaException If the command is invalid or unknown.
+     */
     public static Command parseCommand(String command) throws AmiyaException {
         String[] parts = command.split("\\s+", 2);
         String commandType = parts[0].toLowerCase();

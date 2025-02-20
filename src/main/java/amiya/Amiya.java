@@ -50,7 +50,12 @@ public class Amiya {
     }
 
     /**
-     * Generates a response for the user's chat message.
+     * Processes the user input and returns the response from the application.
+     * This method parses the input command, executes it, and returns the result.
+     * If the command is an exit command, the application will terminate after a short delay.
+     *
+     * @param input The user input command as a string.
+     * @return The response from the application as a string.
      */
     public String getResponse(String input) {
         if (ui == null) {
